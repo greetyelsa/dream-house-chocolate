@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream House Chocolate — Sharjah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --radius: 0.625rem;
+    --cocoa: oklch(0.32 0.052 45.5);
+    --cream: oklch(0.98 0.012 85.5);
+    --toffee: oklch(0.68 0.102 80.5);
+    --toffee-dark: oklch(0.58 0.092 80.5);
+    --card: oklch(1 0 0);
+    --muted-foreground: oklch(0.5 0.04 45);
+    --border: oklch(0.32 0.04 45 / 0.1);
+    --background: var(--cream);
+    --foreground: var(--cocoa);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; }
+
+  a { color: inherit; }
+
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in oklch, var(--cream) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; letter-spacing: 0.01em; }
+  .brand-mark {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--toffee), var(--toffee-dark));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--cream); font-size: 1rem;
+  }
+  nav { display: flex; gap: 28px; font-size: 0.9rem; }
+  nav a { text-decoration: none; opacity: 0.8; transition: opacity 0.2s; }
+  nav a:hover, nav a:focus-visible { opacity: 1; }
+  .header-cta {
+    background: var(--cocoa); color: var(--cream);
+    padding: 10px 20px; border-radius: 999px; text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .header-cta:hover { background: var(--toffee-dark); }
+  @media (max-width: 760px) { nav { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; padding: 96px 24px 140px; }
+  .hero-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 22px; }
+  .eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--toffee-dark); }
+  .hero h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 22px; }
+  .hero h1 em { font-style: italic; color: var(--toffee-dark); }
+  .hero p.lede { font-size: 1.08rem; color: var(--muted-foreground); max-width: 46ch; margin-bottom: 34px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary, .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 26px; border-radius: 999px; text-decoration: none;
+    font-size: 0.92rem; font-weight: 500; transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-primary { background: var(--cocoa); color: var(--cream); }
+  .btn-primary:hover { background: var(--toffee-dark); transform: translateY(-1px); }
+  .btn-secondary { border: 1px solid var(--border); color: var(--cocoa); }
+  .btn-secondary:hover { border-color: var(--toffee-dark); transform: translateY(-1px); }
+
+  .hero-visual {
+    position: relative; aspect-ratio: 4/5; border-radius: calc(var(--radius) * 3);
+    background: linear-gradient(160deg, var(--toffee) 0%, var(--toffee-dark) 55%, var(--cocoa) 100%);
+    overflow: hidden;
+  }
+  .hero-visual .glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.35), transparent 55%);
+  }
+  .hero-tag {
+    position: absolute; left: 20px; bottom: 20px; right: 20px;
+    background: color-mix(in oklch, var(--cream) 94%, transparent);
+    border-radius: var(--radius); padding: 16px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .hero-tag .rating { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--cocoa); }
+  .hero-tag .rating-sub { font-size: 0.75rem; color: var(--muted-foreground); }
+  .stars { color: var(--toffee-dark); font-size: 0.85rem; letter-spacing: 2px; }
+
+  /* signature drip divider */
+  .drip { display: block; width: 100%; height: 64px; margin-top: -1px; }
+  .drip path { fill: var(--cocoa); }
+
+  /* ---------- Categories ---------- */
+  .categories { background: var(--cocoa); color: var(--cream); padding: 90px 24px 100px; }
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+  .section-head .eyebrow { color: var(--toffee); justify-content: center; }
+  .section-head .eyebrow::before { background: var(--toffee); }
+  .section-head h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+  .section-head p { color: color-mix(in oklch, var(--cream) 70%, transparent); margin-top: 14px; }
+
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .cat-card {
+    background: color-mix(in oklch, var(--cocoa) 60%, black 10%);
+    border: 1px solid color-mix(in oklch, var(--cream) 12%, transparent);
+    border-radius: var(--radius); padding: 34px 26px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .cat-card:hover { transform: translateY(-4px); border-color: var(--toffee); }
+  .cat-icon { width: 46px; height: 46px; border-radius: 50%; background: var(--toffee); color: var(--cocoa); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 22px; }
+  .cat-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+  .cat-card p { font-size: 0.9rem; color: color-mix(in oklch, var(--cream) 68%, transparent); }
+  @media (max-width: 760px) { .cat-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Story ---------- */
+  .story { padding: 100px 24px; }
+  .story-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px; align-items: center; }
+  .story-visual {
+    aspect-ratio: 1; border-radius: calc(var(--radius) * 2.5);
+    background: linear-gradient(135deg, var(--card), var(--cream));
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .story-visual::after {
+    content: '';
+    position: absolute; width: 220%; height: 220%;
+    background: repeating-radial-gradient(circle at center, var(--toffee) 0 2px, transparent 2px 34px);
+    opacity: 0.15;
+  }
+  .story-visual span { font-family: 'Playfair Display', serif; font-size: 4.5rem; color: var(--toffee-dark); z-index: 1; }
+  .story h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 20px; }
+  .story p { color: var(--muted-foreground); margin-bottom: 18px; max-width: 52ch; }
+  .story-stats { display: flex; gap: 40px; margin-top: 32px; }
+  .stat b { display: block; font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--cocoa); }
+  .stat span { font-size: 0.82rem; color: var(--muted-foreground); }
+  @media (max-width: 760px) { .story-inner { grid-template-columns: 1fr; } }
+
+  /* ---------- Reviews ---------- */
+  .reviews { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 90px 24px; }
+  .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+  .review-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; background: var(--cream); }
+  .review-card .stars { display: block; margin-bottom: 14px; }
+  .review-card p { font-size: 0.94rem; color: var(--cocoa); margin-bottom: 16px; }
+  .review-card .who { font-size: 0.8rem; color: var(--muted-foreground); }
+  @media (max-width: 760px) { .review-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Visit ---------- */
+  .visit { padding: 100px 24px; }
+  .visit-inner {
+    max-width: 1120px; margin: 0 auto; background: var(--cocoa); color: var(--cream);
+    border-radius: calc(var(--radius) * 2); padding: 60px; display: grid;
+    grid-template-columns: 1.1fr 0.9fr; gap: 48px;
+  }
+  .visit h2 { font-size: clamp(1.8rem, 3vw, 2.3rem); margin-bottom: 20px; }
+  .visit-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+  .visit-list li { display: flex; gap: 14px; font-size: 0.95rem; }
+  .visit-list b { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--toffee); margin-bottom: 3px; }
+  .visit-list span.val { color: color-mix(in oklch, var(--cream) 85%, transparent); }
+  .visit-cta { display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .visit-cta a { text-align: center; }
+  .visit-cta .btn-primary { background: var(--toffee); color: var(--cocoa); }
+  .visit-cta .btn-primary:hover { background: var(--cream); }
+  .visit-cta .btn-secondary { border-color: color-mix(in oklch, var(--cream) 30%, transparent); color: var(--cream); }
+  @media (max-width: 820px) { .visit-inner { grid-template-columns: 1fr; padding: 40px 28px; } }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 40px 24px; }
+  .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.82rem; color: var(--muted-foreground); }
+
+  :focus-visible { outline: 2px solid var(--toffee-dark); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-mark">D</span>
+      Dream House Chocolate
+    </div>
+    <nav>
+      <a href="#categories">Menu</a>
+      <a href="#story">Our Story</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="header-cta" href="https://wa.me/971523291122" target="_blank" rel="noopener">Order on WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Muwaileh · Sharjah</div>
+      <h1>Handmade sweetness, <em>baked fresh</em> every day.</h1>
+      <p class="lede">Cakes, chocolates, and sweets made in-house for birthdays, celebrations, and the everyday moments worth savouring.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/971523291122" target="_blank" rel="noopener">Order on WhatsApp</a>
+        <a class="btn-secondary" href="tel:+97165798695">Call the shop</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="glow"></div>
+      <div class="hero-tag">
+        <div>
+          <div class="rating">4.2</div>
+          <div class="rating-sub">15 Google reviews</div>
+        </div>
+        <div class="stars">★★★★☆</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="drip" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,0 L1200,0 L1200,20 C1150,20 1140,55 1090,55 C1040,55 1030,20 980,20 C930,20 920,50 870,50 C820,50 810,15 760,15 C710,15 700,45 650,45 C600,45 590,10 540,10 C490,10 480,40 430,40 C380,40 370,15 320,15 C270,15 260,48 210,48 C160,48 150,20 100,20 C60,20 40,30 0,25 Z"></path>
+</svg>
+
+<section class="categories" id="categories">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">On the menu</div>
+      <h2>Three counters, one dream house.</h2>
+      <p>Everything is made to order — pick a counter and start your sweet errand.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-icon">C</div>
+        <h3>Cakes</h3>
+        <p>Custom birthday and celebration cakes, baked and finished by hand for your occasion.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">Ch</div>
+        <h3>Chocolate</h3>
+        <p>Premium chocolate boxes and pieces, crafted for gifting or a quiet treat-yourself moment.</p>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">S</div>
+        <h3>Sweets</h3>
+        <p>A rotating counter of house-made sweets, ready whenever the craving strikes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-visual"><span>DH</span></div>
+    <div>
+      <h2>A Sharjah corner built for celebrations.</h2>
+      <p>Dream House Chocolate is a specialty shop on Fire Station Road in Muwaileh, offering fresh cakes, premium chocolates, and sweets for birthdays, celebrations, and everyday occasions.</p>
+      <p>Every order is prepared in-house, so what you pick up is always made close to the moment you'll enjoy it.</p>
+      <div class="story-stats">
+        <div class="stat"><b>Daily</b><span>Fresh bakes</span></div>
+        <div class="stat"><b>Open</b><span>Until midnight</span></div>
+        <div class="stat"><b>4.2★</b><span>Customer rated</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What customers say</div>
+      <h2>Loved for birthdays and last-minute treats.</h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <span class="stars">★★★★★</span>
+        <p>The birthday cake was fresh, beautifully finished, and ready right on time.</p>
+        <div class="who">Google review</div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★☆</span>
+        <p>Good variety of chocolate boxes — a reliable pick for last-minute gifting.</p>
+        <div class="who">Google review</div>
+      </div>
+      <div class="review-card">
+        <span class="stars">★★★★☆</span>
+        <p>Handy that they're open late — picked up sweets on the way home past 10pm.</p>
+        <div class="who">Google review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="visit-inner">
+    <div>
+      <h2>Visit the shop.</h2>
+      <ul class="visit-list">
+        <li>
+          <div>
+            <b>Address</b>
+            <span class="val">Fire Station Road, Muwaileh Commercial, Industrial Area, Sharjah, UAE</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <b>Hours</b>
+            <span class="val">Open daily · Closes 12 AM</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <b>Phone</b>
+            <span class="val">06 579 8695</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <b>Average spend</b>
+            <span class="val">AED 50–100 per person</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="visit-cta">
+      <a class="btn-primary" href="https://wa.me/971523291122" target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn-secondary" href="tel:+97165798695">Call 06 579 8695</a>
+      <a class="btn-secondary" href="https://www.google.com/maps/place/?q=place_id:0x3e5f5ff8567cd1b9:0xc67bc2dd7e443639" target="_blank" rel="noopener">Get directions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Dream House Chocolate — Muwaileh, Sharjah</span>
+    <span>Cakes · Chocolate · Sweets</span>
+  </div>
+</footer>
+
+</body>
+</html>
