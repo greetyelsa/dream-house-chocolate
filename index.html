@@ -85,15 +85,21 @@
   }
 
   .logo-icon {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
-    font-size: 1.2rem;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   nav {
@@ -268,11 +274,18 @@
     box-shadow: 0 20px 60px rgba(45, 24, 16, 0.2);
   }
 
+  .hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .hero-visual::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent 60%);
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent 60%);
+    pointer-events: none;
   }
 
   .rating-badge {
@@ -283,6 +296,7 @@
     padding: 20px 24px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 10;
   }
 
   .rating-badge strong {
@@ -347,14 +361,21 @@
 
   .categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 32px;
+    align-items: center;
+  }
+
+  .categories-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .category-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(212, 165, 116, 0.3);
-    padding: 40px 32px;
+    padding: 30px 28px;
     border-radius: 15px;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -367,96 +388,67 @@
   }
 
   .category-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    margin-bottom: 14px;
   }
 
   .category-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 14px;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
     color: var(--accent);
   }
 
   .category-card p {
     color: rgba(255, 255, 255, 0.75);
-    line-height: 1.8;
+    line-height: 1.6;
+    font-size: 0.95rem;
   }
 
-  /* ============ GALLERY ============ */
-  .gallery {
-    padding: 100px 0;
-    background: var(--light);
-  }
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 28px;
-    margin-top: 50px;
-  }
-
-  .gallery-item {
-    position: relative;
+  .categories-image {
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    height: 350px;
-    cursor: pointer;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    min-height: 400px;
   }
 
-  .gallery-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  }
-
-  .gallery-item img {
+  .categories-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
   }
 
-  .gallery-item:hover img {
-    transform: scale(1.05);
-  }
+  @media (max-width: 768px) {
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
 
-  .gallery-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(45, 24, 16, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .gallery-item:hover .gallery-overlay {
-    opacity: 1;
-  }
-
-  .gallery-overlay-text {
-    color: var(--white);
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 600;
+    .categories-image {
+      min-height: 300px;
+    }
   }
 
   /* ============ FEATURED PRODUCTS ============ */
   .featured {
     padding: 100px 0;
-    background: var(--white);
+    background: var(--light);
+  }
+
+  .featured-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
   }
 
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 28px;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .product-card {
-    background: var(--light);
+    background: var(--white);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -470,7 +462,7 @@
 
   .product-image {
     width: 100%;
-    height: 200px;
+    height: 180px;
     background: linear-gradient(135deg, var(--secondary), var(--accent));
     display: flex;
     align-items: center;
@@ -486,19 +478,19 @@
   }
 
   .product-info {
-    padding: 24px;
+    padding: 20px;
   }
 
   .product-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
     color: var(--primary);
   }
 
   .product-info p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--muted);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .product-footer {
@@ -508,9 +500,33 @@
   }
 
   .price {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--secondary);
+  }
+
+  .featured-image {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    height: 100%;
+    min-height: 450px;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .featured-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-image {
+      min-height: 300px;
+    }
   }
 
   /* ============ WHY CHOOSE US ============ */
@@ -519,38 +535,71 @@
     background: linear-gradient(135deg, rgba(45, 24, 16, 0.05) 0%, rgba(212, 165, 116, 0.1) 100%);
   }
 
+  .why-choose-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
   .benefits-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .benefit {
-    text-align: center;
+    display: flex;
+    gap: 20px;
   }
 
   .benefit-icon {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     background: linear-gradient(135deg, var(--secondary), var(--accent));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--white);
+    flex-shrink: 0;
   }
 
   .benefit h3 {
-    font-size: 1.3rem;
-    margin-bottom: 12px;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
     color: var(--primary);
   }
 
   .benefit p {
     color: var(--muted);
-    line-height: 1.8;
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+
+  .why-choose-image {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    height: 100%;
+    min-height: 450px;
+  }
+
+  .why-choose-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .why-choose-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .why-choose-image {
+      min-height: 300px;
+    }
   }
 
   /* ============ TESTIMONIALS ============ */
@@ -563,6 +612,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 28px;
+    margin-top: 50px;
   }
 
   .testimonial {
@@ -731,10 +781,6 @@
       justify-content: center;
     }
 
-    .categories-grid, .products-grid, .testimonials-grid, .gallery-grid {
-      grid-template-columns: 1fr;
-    }
-
     nav {
       display: none;
     }
@@ -771,12 +817,13 @@
   <div class="container">
     <div class="header-content">
       <div class="logo">
-        <div class="logo-icon">🍫</div>
-        Dream House Chocolate
+        <div class="logo-icon">
+          <img src="https://imgur.com/fZvWvH1.png" alt="Dream House Chocolate Logo" style="border-radius: 50%;">
+        </div>
+        Dream House
       </div>
       <nav>
         <a href="#categories">Menu</a>
-        <a href="#gallery">Gallery</a>
         <a href="#featured">Products</a>
         <a href="#testimonials">Reviews</a>
         <a href="#visit">Visit</a>
@@ -829,6 +876,7 @@
       </div>
 
       <div class="hero-visual">
+        <img src="https://imgur.com/TyJ8nGq.jpg" alt="Luxury Chocolate Cake with Gold Leaf">
         <div class="rating-badge">
           <strong>4.2★</strong>
           <span>15 Google reviews</span>
@@ -842,55 +890,30 @@
 <!-- CATEGORIES -->
 <section class="categories" id="categories">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" style="margin-bottom: 60px;">
       <h2>Three Counters, One Dream</h2>
       <p>Everything is made fresh to order. Choose your favorite counter and start your sweet errand.</p>
     </div>
     <div class="categories-grid">
-      <div class="category-card">
-        <div class="category-icon">🎂</div>
-        <h3>Custom Cakes</h3>
-        <p>Birthday cakes, celebration designs, and custom orders baked fresh and beautifully finished by hand for your special moments.</p>
-      </div>
-      <div class="category-card">
-        <div class="category-icon">🍫</div>
-        <h3>Premium Chocolate</h3>
-        <p>Handcrafted chocolate boxes and pieces made with quality ingredients. Perfect for gifting or treating yourself to a moment of pure indulgence.</p>
-      </div>
-      <div class="category-card">
-        <div class="category-icon">🍬</div>
-        <h3>Artisan Sweets</h3>
-        <p>House-made sweets with rotating flavors and styles. Always fresh, always ready for whenever your craving strikes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section class="gallery" id="gallery">
-  <div class="container">
-    <div class="section-header">
-      <h2>Our Creations</h2>
-      <p>Beautiful cakes and treats handcrafted with love and premium ingredients</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=500&fit=crop" alt="Elegant White Birthday Cake">
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">White Elegance</div>
+      <div class="categories-content">
+        <div class="category-card">
+          <div class="category-icon">🎂</div>
+          <h3>Custom Cakes</h3>
+          <p>Birthday cakes, celebration designs, and custom orders baked fresh and beautifully finished by hand for your special moments.</p>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🍫</div>
+          <h3>Premium Chocolate</h3>
+          <p>Handcrafted chocolate boxes and pieces made with quality ingredients. Perfect for gifting or treating yourself to a moment of pure indulgence.</p>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🍬</div>
+          <h3>Artisan Sweets</h3>
+          <p>House-made sweets with rotating flavors and styles. Always fresh, always ready for whenever your craving strikes.</p>
         </div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=500&fit=crop" alt="Chocolate Birthday Cake">
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">Chocolate Delight</div>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=500&fit=crop" alt="Blue Floral Birthday Cake">
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text">Floral Dreams</div>
-        </div>
+      <div class="categories-image">
+        <img src="https://imgur.com/TyJ8nGq.jpg" alt="Premium Chocolate Cake">
       </div>
     </div>
   </div>
@@ -899,42 +922,47 @@
 <!-- FEATURED PRODUCTS -->
 <section class="featured" id="featured">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" style="margin-bottom: 60px;">
       <h2>What We're Known For</h2>
       <p>Signature creations loved by customers across Sharjah</p>
     </div>
-    <div class="products-grid">
-      <div class="product-card">
-        <div class="product-image">🎂</div>
-        <div class="product-info">
-          <h3>Birthday Specials</h3>
-          <p>Custom designed cakes ready on time, beautifully decorated with flavors that match your vision.</p>
-          <div class="product-footer">
-            <span class="price">AED 75–150</span>
+    <div class="featured-layout">
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image">🎂</div>
+          <div class="product-info">
+            <h3>Birthday Specials</h3>
+            <p>Custom designed cakes ready on time, beautifully decorated with flavors that match your vision.</p>
+            <div class="product-footer">
+              <span class="price">AED 75–150</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🍫</div>
+          <div class="product-info">
+            <h3>Chocolate Gift Boxes</h3>
+            <p>Premium assorted chocolates elegantly packaged for birthdays, weddings, and corporate gifting.</p>
+            <div class="product-footer">
+              <span class="price">AED 50–120</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🍮</div>
+          <div class="product-info">
+            <h3>Dessert Platters</h3>
+            <p>Mixed sweets and pastries perfect for parties, events, and gatherings. Made fresh daily.</p>
+            <div class="product-footer">
+              <span class="price">AED 60–100</span>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="product-card">
-        <div class="product-image">🍫</div>
-        <div class="product-info">
-          <h3>Chocolate Gift Boxes</h3>
-          <p>Premium assorted chocolates elegantly packaged for birthdays, weddings, and corporate gifting.</p>
-          <div class="product-footer">
-            <span class="price">AED 50–120</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-image">🍮</div>
-        <div class="product-info">
-          <h3>Dessert Platters</h3>
-          <p>Mixed sweets and pastries perfect for parties, events, and gatherings. Made fresh daily.</p>
-          <div class="product-footer">
-            <span class="price">AED 60–100</span>
-          </div>
-        </div>
+      <div class="featured-image">
+        <img src="https://imgur.com/qF9xV2R.jpg" alt="Premium Chocolate Gift Box">
       </div>
     </div>
   </div>
@@ -946,36 +974,53 @@
     <div class="section-header" style="margin-bottom: 60px;">
       <h2>Why Choose Dream House?</h2>
     </div>
-    <div class="benefits-grid">
-      <div class="benefit">
-        <div class="benefit-icon">✋</div>
-        <h3>100% Handmade</h3>
-        <p>Every cake, chocolate, and sweet is crafted by hand in our Sharjah kitchen with premium ingredients.</p>
+    <div class="why-choose-layout">
+      <div class="benefits-grid">
+        <div class="benefit">
+          <div class="benefit-icon">✋</div>
+          <div>
+            <h3>100% Handmade</h3>
+            <p>Every cake, chocolate, and sweet is crafted by hand in our Sharjah kitchen with premium ingredients.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">⏰</div>
+          <div>
+            <h3>Made Fresh Daily</h3>
+            <p>No frozen stock. Everything is prepared close to when you'll enjoy it, ensuring peak freshness and taste.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🎯</div>
+          <div>
+            <h3>Custom Orders</h3>
+            <p>Have a vision? We'll bring it to life. Custom flavors, designs, and sizes for your special occasion.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">⭐</div>
+          <div>
+            <h3>4.2★ Rated</h3>
+            <p>Trusted by customers for birthdays, celebrations, and everyday treats. Google reviews that speak for themselves.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🌙</div>
+          <div>
+            <h3>Late Night Hours</h3>
+            <p>Open until midnight daily. Perfect for last-minute cravings, surprise celebrations, or impromptu gatherings.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">📍</div>
+          <div>
+            <h3>Convenient Location</h3>
+            <p>Located on Fire Station Road in Muwaileh, easily accessible with ample parking and quick service.</p>
+          </div>
+        </div>
       </div>
-      <div class="benefit">
-        <div class="benefit-icon">⏰</div>
-        <h3>Made Fresh Daily</h3>
-        <p>No frozen stock. Everything is prepared close to when you'll enjoy it, ensuring peak freshness and taste.</p>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">🎯</div>
-        <h3>Custom Orders</h3>
-        <p>Have a vision? We'll bring it to life. Custom flavors, designs, and sizes for your special occasion.</p>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">⭐</div>
-        <h3>4.2★ Rated</h3>
-        <p>Trusted by customers for birthdays, celebrations, and everyday treats. Google reviews that speak for themselves.</p>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">🌙</div>
-        <h3>Late Night Hours</h3>
-        <p>Open until midnight daily. Perfect for last-minute cravings, surprise celebrations, or impromptu gatherings.</p>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">📍</div>
-        <h3>Convenient Location</h3>
-        <p>Located on Fire Station Road in Muwaileh, easily accessible with ample parking and quick service.</p>
+      <div class="why-choose-image">
+        <img src="https://imgur.com/8YzVnWk.jpg" alt="Chocolate Dessert Display with Fresh Fruits">
       </div>
     </div>
   </div>
@@ -984,7 +1029,7 @@
 <!-- TESTIMONIALS -->
 <section class="testimonials" id="testimonials">
   <div class="container">
-    <div class="section-header" style="margin-bottom: 60px;">
+    <div class="section-header">
       <h2>Loved by Our Customers</h2>
       <p>Real reviews from real people who've celebrated with us</p>
     </div>
